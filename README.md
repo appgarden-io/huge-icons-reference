@@ -13,6 +13,8 @@ tags:
 
 # HugeIcons Markdown Reference
 
+[![skills.sh](https://skills.sh/b/appgarden-io/huge-icons-reference)](https://skills.sh/appgarden-io/huge-icons-reference)
+
 Generated at: 2026-05-15T14:52:51.848Z
 
 Source: HugeIcons MCP list_icons via @hugeicons/mcp-server
@@ -25,9 +27,32 @@ Search tags: 10781
 
 ## Files
 
+- [SKILL.md](SKILL.md): agent skill entrypoint and search workflow.
+- [scripts/search_icons.py](scripts/search_icons.py): dependency-free CLI for ranked name, description, category, and tag search.
 - [all-icons.md](all-icons.md): complete icon list with descriptions and tags.
 - [tag-index.md](tag-index.md): normalized search tags mapped back to icon names.
 - [categories/](categories/): one markdown file per HugeIcons category.
+
+## Install as an Agent Skill
+
+Install from `skills.sh`:
+
+```bash
+npx skills add appgarden-io/huge-icons-reference
+```
+
+This repository is also a skill folder named `hugeicons-icon-reference`. Install it by copying or symlinking this directory into the agent's skills directory, then invoke it whenever an agent needs exact HugeIcons icon identifiers.
+
+Fast local search:
+
+```bash
+python3 scripts/search_icons.py "secure checkout" --limit 8
+python3 scripts/search_icons.py "terminal command line" --category programming --limit 10
+python3 scripts/search_icons.py "ai search" --require-all-terms --limit 8
+python3 scripts/search_icons.py "profile settings" --format json --limit 5
+```
+
+The search script reads `all-icons.md` as the source of truth and ranks matches across icon names, generated descriptions, categories, and normalized tags.
 
 ## Category Files
 
